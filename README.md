@@ -1,4 +1,3 @@
-[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/edifus-bazzite-nvidia-open)](https://artifacthub.io/packages/search?repo=edifus-bazzite-nvidia-open)
 [![Build Code OS](https://github.com/edifus/bazzite-nvidia-open/actions/workflows/build.yml/badge.svg)](https://github.com/edifus/bazzite-nvidia-open/actions/workflows/build.yml)
 
 <div align="center">
