@@ -6,7 +6,6 @@ com.github.PintaProject.Pinta
 com.github.tchx84.Flatseal
 com.github.wwmm.easyeffects
 com.jeffser.Alpaca
-com.jeffser.Alpaca.Plugins.AMD
 com.seafile.Client
 com.stremio.Stremio
 com.usebottles.bottles
@@ -26,6 +25,5 @@ org.kde.kdenlive
 org.kde.krita
 org.kde.okular
 org.libreoffice.LibreOffice
-org.localsend.localsend_app
 runtime/org.gtk.Gtk3theme.adw-gtk3-dark/x86_64/3.22
 runtime/org.gtk.Gtk3theme.adw-gtk3/x86_64/3.22

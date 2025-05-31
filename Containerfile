@@ -6,7 +6,7 @@ FROM scratch AS ctx
 COPY build /
 
 # Base Image
-FROM ghcr.io/ublue-os/bazzite-nvidia-open@${BUILD_DIGEST} AS bazzite
+FROM ghcr.io/ublue-os/bazzite-nvidia-open@${BUILD_DIGEST} AS bazzite-nvidia-open
 COPY rootfs /
 
 RUN \
