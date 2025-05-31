@@ -1,10 +1,10 @@
 [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/codeos)](https://artifacthub.io/packages/search?repo=codeos)
-[![Build Code OS](https://github.com/edifus/bazzite/actions/workflows/build.yml/badge.svg)](https://github.com/edifus/bazzite/actions/workflows/build.yml)
+[![Build Code OS](https://github.com/edifus/bazzite-nvidia-open/actions/workflows/build.yml/badge.svg)](https://github.com/edifus/bazzite-nvidia-open/actions/workflows/build.yml)
 
 <div align="center">
   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/edifus/bazzite/refs/heads/main/repo_files/code-logo-black.png">
-    <img alt="Code OS Logo" src="https://raw.githubusercontent.com/edifus/bazzite/refs/heads/main/repo_files/code-logo-white.png" width="100">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/edifus/bazzite-nvidia-open/refs/heads/main/repo_files/code-logo-black.png">
+    <img alt="Code OS Logo" src="https://raw.githubusercontent.com/edifus/bazzite-nvidia-open/refs/heads/main/repo_files/code-logo-white.png" width="100">
   </picture>
 </div>
 
@@ -24,7 +24,7 @@ A custom Fedora Atomic image designed for gaming, development and daily use.
 - `cursor` and `cursor-cli` commands
 - ADB, Fastboot and [Waydroid](https://docs.bazzite.gg/Installing_and_Managing_Software/Waydroid_Setup_Guide/)
 - Audacious with Winamp skins
-- Curated list of [Flatpaks](https://github.com/edifus/bazzite/blob/main/repo/flatpaks)
+- Curated list of [Flatpaks](https://github.com/edifus/bazzite-nvidia-open/blob/main/repo/flatpaks)
 - Docker, Podman, Distrobox and Toolbx
 - Fixed Plasma integration with Google Drive
 - Nix package manager
@@ -39,7 +39,7 @@ A custom Fedora Atomic image designed for gaming, development and daily use.
 From existing Fedora Atomic/Universal Blue installation switch to Code OS image:
 
 ```bash
-sudo bootc switch --enforce-container-sigpolicy ghcr.io/edifus/bazzite:latest
+sudo bootc switch --enforce-container-sigpolicy ghcr.io/edifus/bazzite-nvidia-open:latest
 ```
 
 If you want to install the image on a new system download and install Bazzite ISO first:
