@@ -23,9 +23,10 @@ dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:bazzite-org:bazzite" 
 # ghostty terminal
 log "Building ghostty terminal from source"
 workdir=$(pwd)
-dnf5 install -y blueprint-compiler gettext gtk4-devel gtk4-layer-shell libadwaita-devel zig
+dnf5 install -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.0-8.fc42
 git clone https://github.com/ghostty-org/ghostty
-cd ghostty && zig build -fsys=gtk4-layer-shell -p /usr -Doptimize=ReleaseFast
+cd ghostty && git checkout v1.1.3
+zig build -p /usr -Doptimize=ReleaseFast
 cd $workdir && rm -rf ghostty
 
 # vscode
