@@ -12,7 +12,6 @@ log "Starting Code OS build process"
 mkdir /nix
 
 ### Install packages
-
 # ghostty terminal
 log "Building ghostty terminal from source"
 workdir=$(pwd)
