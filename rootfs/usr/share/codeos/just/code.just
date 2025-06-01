@@ -2,7 +2,6 @@
 code-access-docker:
   #!/usr/bin/env bash
   set -euo pipefail
-  sudo groupadd -r docker
   sudo usermod -aG docker $USER
 
 # Install all Code OS apps

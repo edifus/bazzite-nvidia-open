@@ -17,8 +17,8 @@ mkdir /nix
 mkdir -p /usr/share/gamescope-session-plus/
 curl -Lo /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz https://large-package-sources.nobaraproject.org/bootstrap_steam.tar.gz
 dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:bazzite-org:bazzite" -y \
-    gamescope-session-plus \
-    gamescope-session-steam
+  gamescope-session-plus \
+  gamescope-session-steam
 
 # ghostty terminal
 log "Building ghostty terminal from source"
@@ -27,9 +27,6 @@ dnf5 install -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig
 git clone https://github.com/ghostty-org/ghostty
 cd ghostty && zig build -p /usr -Doptimize=ReleaseFast
 cd $workdir && rm -rf ghostty
-
-dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:ublue-os:packages" -y \
-    ublue-setup-services
 
 # vscode
 log "Installing vscode"
@@ -84,13 +81,6 @@ declare -A RPM_PACKAGES=(
     vlc-plugin-kde \
     vlc-plugin-pause-click \
     vlc"
-
-  ["docker-ce"]="\
-    containerd.io \
-    docker-buildx-plugin \
-    docker-ce \
-    docker-ce-cli \
-    docker-compose-plugin"
 )
 
 log "Installing RPM packages"
@@ -113,6 +103,24 @@ for repo in "${!RPM_PACKAGES[@]}"; do
   fi
 done
 
+# setup docker
+docker_pkgs=(
+    containerd.io
+    docker-buildx-plugin
+    docker-ce
+    docker-ce-cli
+    docker-compose-plugin
+)
+dnf5 config-manager addrepo --from-repofile="https://download.docker.com/linux/fedora/docker-ce.repo"
+dnf5 config-manager setopt docker-ce-stable.enabled=0
+dnf5 install -y --enable-repo="docker-ce-stable" "${docker_pkgs[@]}" || {
+    # Use test packages if docker pkgs is not available for f42
+    if (($(lsb_release -sr) == 42)); then
+        echo "::info::Missing docker packages in f42, falling back to test repos..."
+        dnf5 install -y --enablerepo="docker-ce-test" "${docker_pkgs[@]}"
+    fi
+}
+
 # Load iptable_nat module for docker-in-docker.
 # See:
 #   - https://github.com/ublue-os/bluefin/issues/2365
@@ -121,9 +129,12 @@ mkdir -p /etc/modules-load.d && cat >>/etc/modules-load.d/ip_tables.conf <<EOF
 iptable_nat
 EOF
 
+# docker sysusers.d
+echo -e "#Type Name   ID\ng     docker -" | tee /usr/lib/sysusers.d/docker.conf
+
 # Enable systemd services
 log "Enabling system services"
-systemctl enable docker.service docker.socket libvirtd.service
+systemctl enable docker.socket libvirtd.service
 
 # Install Cursor GUI
 log "Installing Cursor GUI"
