@@ -13,13 +13,6 @@ mkdir /nix
 
 ### Install packages
 
-# gamescope session plus
-mkdir -p /usr/share/gamescope-session-plus/
-curl -Lo /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz https://large-package-sources.nobaraproject.org/bootstrap_steam.tar.gz
-#dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:bazzite-org:bazzite" -y \
-#  gamescope-session-plus \
-#  gamescope-session-steam
-
 # ghostty terminal
 log "Building ghostty terminal from source"
 workdir=$(pwd)
@@ -41,10 +34,6 @@ dnf5 remove -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.0
 
 # RPM packages list
 declare -A RPM_PACKAGES=(
-  ["copr:bazzite-org/bazzite"]="\
-  gamescope-session-plus \
-  gamescope-session-steam"
-
   ["fedora"]="\
     android-tools \
     aria2 \
