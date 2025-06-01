@@ -56,6 +56,7 @@ declare -A RPM_PACKAGES=(
     ksystemlog \
     nmap \
     openrgb \
+    plymouth-plugin-script \
     printer-driver-brlaser \
     qemu-kvm \
     virt-manager \
