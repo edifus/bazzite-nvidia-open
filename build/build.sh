@@ -41,7 +41,7 @@ dnf5 remove -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.0
 
 # RPM packages list
 declare -A RPM_PACKAGES=(
-  ["copr:copr.fedorainfracloud.org:bazzite-org:bazzite"]="\
+  ["copr:bazzite-org/bazzite"]="\
   gamescope-session-plus \
   gamescope-session-steam"
 
