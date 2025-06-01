@@ -27,7 +27,7 @@ dnf5 install -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.
 git clone https://github.com/ghostty-org/ghostty
 cd ghostty && git checkout v1.1.3
 zig build -p /usr -Doptimize=ReleaseFast
-cd $workdir && rm -rf ghostty
+cd $workdir && rm -rf ghostty /root/.cache/zig
 
 # vscode
 log "Installing vscode"
