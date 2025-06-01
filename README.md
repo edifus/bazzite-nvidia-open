@@ -50,6 +50,9 @@ If you want to install the image on a new system download and install Bazzite IS
 The following `ujust` commands are available:
 
 ```bash
+# Enable user access to docker socket
+ujust code-access-docker
+
 # Clean up old packages and Docker/Podman images and volumes
 ujust code-clean
 

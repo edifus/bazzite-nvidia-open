@@ -16,30 +16,35 @@ mkdir /nix
 # gamescope session plus
 mkdir -p /usr/share/gamescope-session-plus/
 curl -Lo /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz https://large-package-sources.nobaraproject.org/bootstrap_steam.tar.gz
-dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:bazzite-org:bazzite" -y \
-  gamescope-session-plus \
-  gamescope-session-steam
+#dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:bazzite-org:bazzite" -y \
+#  gamescope-session-plus \
+#  gamescope-session-steam
 
 # ghostty terminal
 log "Building ghostty terminal from source"
 workdir=$(pwd)
 dnf5 install -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.0-8.fc42
-git clone https://github.com/ghostty-org/ghostty
-cd ghostty && git checkout v1.1.3
+git clone https://github.com/ghostty-org/ghostty /ghostty
+cd /ghostty && git checkout v1.1.3
 zig build -p /usr -Doptimize=ReleaseFast
-cd $workdir && rm -rf ghostty /root/.cache/zig
+cd $workdir && rm -rf /ghostty /root/.cache/zig
+dnf5 remove -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig-0.13.0-8.fc42
 
 # vscode
-log "Installing vscode"
-dnf5 config-manager addrepo --set=baseurl="https://packages.microsoft.com/yumrepos/vscode" --id="vscode"
-dnf5 config-manager setopt vscode.enabled=0
+#log "Installing vscode"
+#dnf5 config-manager addrepo --set=baseurl="https://packages.microsoft.com/yumrepos/vscode" --id="vscode"
+#dnf5 config-manager setopt vscode.enabled=0
 # FIXME: gpgcheck is broken for vscode due to it using `asc` for checking
 # seems to be broken on newer rpm security policies.
-dnf5 config-manager setopt vscode.gpgcheck=0
-dnf5 install --nogpgcheck --enable-repo="vscode" -y code
+#dnf5 config-manager setopt vscode.gpgcheck=0
+#dnf5 install --nogpgcheck --enable-repo="vscode" -y code
 
 # RPM packages list
 declare -A RPM_PACKAGES=(
+  ["copr:copr.fedorainfracloud.org:bazzite-org:bazzite"]="\
+  gamescope-session-plus \
+  gamescope-session-steam"
+
   ["fedora"]="\
     android-tools \
     aria2 \
