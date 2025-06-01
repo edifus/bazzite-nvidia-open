@@ -25,7 +25,7 @@ log "Building ghostty terminal from source"
 workdir=$(pwd)
 dnf5 install -y blueprint-compiler gettext gtk4-devel libadwaita-devel zig
 git clone https://github.com/ghostty-org/ghostty
-cd ghostty && zig build -p /usr -Doptimize=ReleaseFast
+cd ghostty && zig build -fsys=gtk4-layer-shell -p /usr -Doptimize=ReleaseFast
 cd $workdir && rm -rf ghostty
 
 # vscode
