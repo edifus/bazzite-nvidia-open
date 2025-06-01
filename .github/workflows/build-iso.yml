@@ -39,7 +39,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: ${{ inputs.platform }}
+        platform: ["${{ inputs.platform }}"]
     permissions:
       contents: read
       packages: read
