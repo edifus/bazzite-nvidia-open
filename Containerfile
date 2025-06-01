@@ -17,6 +17,7 @@ RUN \
   mkdir -p /var/roothome && \
   /ctx/build.sh && \
   /ctx/fix-opt.sh && \
+  /ctx/theme.sh && \
   /ctx/initramfs.sh && \
   /ctx/cleanup.sh && \
   ostree container commit
