@@ -6,7 +6,6 @@ trap '[[ $BASH_COMMAND != echo* ]] && [[ $BASH_COMMAND != log* ]] && echo "+ $BA
 log() {
   echo "=== $* ==="
 }
-log "Starting Code OS build process"
 
 ### Apply random plymoth theme on build
 theme_list=(
@@ -15,6 +14,8 @@ theme_list=(
     "angular_alt"
     "blockchain"
     "circle"
+    "circle_flow"
+    "circuit"
     "cubes"
     "deus_ex"
     "green_blocks"
@@ -29,4 +30,5 @@ theme_list=(
 
 theme=$(printf "%s\n" "${theme_list[@]}" | shuf -n 1)
 
+log "Applying plymouth theme $theme"
 plymouth-set-default-theme $theme
